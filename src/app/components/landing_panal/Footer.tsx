@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -6,11 +8,18 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">आ</span>
+              <div className="relative w-12 h-12">
+                <Image
+                                src="/logo.svg"
+                                alt="AyurSutra Logo"
+                                width={88}
+                                height={88}
+                                className="rounded-lg object-contain"
+                                priority
+                              />
               </div>
               <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold bg-gradient-to-r from-green-400 via-orange-400 to-blue-400 bg-clip-text text-transparent">
                   AyurSutra
                 </span>
               </div>

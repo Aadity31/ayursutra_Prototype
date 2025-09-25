@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import { useState } from 'react'
 
 export default function Team() {
@@ -6,79 +7,79 @@ export default function Team() {
 
   const teamMembers = [
     {
-      name: "Arjun Sharma",
+      name: "Shwetanshu Bhatt ",
       role: "Team Leader & Full Stack Developer",
       branch: "Computer Science Engineering",
-      year: "4th Year",
+      year: "3rd Year",
       skills: ["React", "Node.js", "AI/ML", "System Design"],
       bio: "Passionate about healthcare technology and AI integration. Lead developer with 3+ years of web development experience.",
-      linkedin: "https://linkedin.com/in/arjunsharma",
-      github: "https://github.com/arjunsharma",
+      linkedin: "https://linkedin.com/in/Shwetanshu-Bhatt",
+      github: "https://github.com/Shwetanshu-Bhatt",
       image: "/team/arjun.jpg",
       expertise: "Frontend & Backend Development",
       color: "blue"
     },
     {
-      name: "Priya Patel",
-      role: "AI/ML Engineer & Data Scientist",
-      branch: "Artificial Intelligence & Data Science",
-      year: "4th Year",
-      skills: ["Python", "TensorFlow", "NLP", "Computer Vision"],
+      name: "Aditya Dimri",
+      role: "Full Stack Developer",
+      branch: "Artificial Intelligence & Machine Learning",
+      year: "3rd Year",
+      skills: ["Python", "TensorFlow", "NLP", "Computer Vision","Next.js", "Node.js", "AI/ML", "System Design"],
       bio: "Specialized in healthcare AI and predictive analytics. Research experience in medical data processing and recommendation systems.",
       linkedin: "https://linkedin.com/in/priyapatel",
-      github: "https://github.com/priyapatel",
-      image: "/team/priya.jpg",
+      github: "https://github.com/Aadity31",
+      image: "aditya.jpg",
       expertise: "Machine Learning & Analytics",
       color: "purple"
     },
     {
-      name: "Rahul Kumar",
+      name: "Upasana Gaur",
       role: "Mobile App Developer",
       branch: "Information Technology",
       year: "3rd Year",
       skills: ["React Native", "Android", "Flutter", "Firebase"],
       bio: "Expert in cross-platform mobile development. Passionate about creating intuitive healthcare mobile applications.",
       linkedin: "https://linkedin.com/in/rahulkumar",
-      github: "https://github.com/rahulkumar",
+      github: "https://github.com/Upasana-Gaur",
       image: "/team/rahul.jpg",
       expertise: "Mobile Development",
       color: "green"
     },
     {
-      name: "Ananya Singh",
+      name: "Kamakshi Pandey",
       role: "Backend Developer & DevOps",
       branch: "Computer Engineering",
       year: "4th Year",
       skills: ["Python", "Django", "AWS", "Docker", "PostgreSQL"],
       bio: "Cloud infrastructure specialist with expertise in scalable backend systems. Focus on healthcare data security and HIPAA compliance.",
       linkedin: "https://linkedin.com/in/ananyasingh",
-      github: "https://github.com/ananyasingh",
+      github: "https://github.com/KamakshiPandey",
       image: "/team/ananya.jpg",
       expertise: "Backend & Cloud Infrastructure",
       color: "orange"
     },
     {
-      name: "Vikash Gupta",
+      name: "Ravindra Singh ",
       role: "UI/UX Designer & Frontend Developer",
       branch: "Computer Science Engineering",
       year: "3rd Year",
       skills: ["Figma", "React", "Tailwind CSS", "User Research"],
       bio: "Creative designer with focus on healthcare UX. Ensures accessibility and user-friendly interfaces for all age groups.",
       linkedin: "https://linkedin.com/in/vikashgupta",
-      github: "https://github.com/vikashgupta",
+      github: "https://github.com/Ravindra-Singh7",
       image: "/team/vikash.jpg",
       expertise: "UI/UX Design & Frontend",
       color: "pink"
     },
     {
-      name: "Sneha Reddy",
+      name: "Anshika gupta ",
       role: "Business Analyst & Project Manager",
       branch: "Information Systems",
       year: "4th Year",
       skills: ["Project Management", "Business Analysis", "Market Research", "Documentation"],
       bio: "Strategic thinker with healthcare domain knowledge. Coordinates between technical and business aspects of the project.",
       linkedin: "https://linkedin.com/in/snehareddy",
-      github: "https://github.com/snehareddy",
+      github: "https://github.com/Anshikagupta1306",
       image: "/team/sneha.jpg",
       expertise: "Business Strategy & Analysis",
       color: "indigo"
