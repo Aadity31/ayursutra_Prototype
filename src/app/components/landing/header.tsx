@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -94,12 +95,22 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button 
-              onClick={() => navigateToSection('demo')}
-              className="bg-gradient-to-r from-green-600 via-orange-500 to-blue-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
-            >
-              View Demo
-            </button>
+            <Link href="/login">
+              <button 
+                onClick={() => navigateToSection('demo')}
+                className="bg-blue-500 px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
+              >
+                Login
+              </button>
+            </Link>
+            <Link href="/signUp">
+              <button 
+                onClick={() => navigateToSection('demo')}
+                className="bg-blue-500 px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
+              >
+                SignUp
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

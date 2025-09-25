@@ -8,7 +8,6 @@ export const getTheme = () => {
     if (stored === "dark") return darkColors;
     if (stored === "light") return lightColors;
   }
-  // default
   return lightColors;
 };
 
