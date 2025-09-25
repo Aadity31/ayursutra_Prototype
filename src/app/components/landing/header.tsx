@@ -48,6 +48,11 @@ export default function Header() {
                 Login
               </button>
             </Link>
+            <Link href="/signUp">
+              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium cursor-pointer">
+                SignUp
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
