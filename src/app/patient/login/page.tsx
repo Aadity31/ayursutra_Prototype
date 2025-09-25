@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getTheme } from "../../constants/themeSelect";
-import Header from "../../components/login/header";
+import Header from "../../components/patient/header";
 
 const LoginPage = () => {
   const [mounted, setMounted] = useState(false);
