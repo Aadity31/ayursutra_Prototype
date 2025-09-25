@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -38,16 +37,16 @@ export default function Header() {
           <div className="flex items-center space-x-3">
             <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
               <Image
-                src="/logo.svg"
+                src="/logo-no-name.svg"
                 alt="AyurSutra Logo"
-                width={88}
-                height={88}
+                width={48}
+                height={48}
                 className="rounded-lg object-contain"
                 priority
               />
             </div>
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-green-700 via-orange-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
                 AyurSutra
               </span>
               <div className="text-xs text-gray-500 -mt-1">Smart India Hackathon 2025</div>
@@ -95,22 +94,12 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login">
-              <button 
-                onClick={() => navigateToSection('demo')}
-                className="bg-blue-500 px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
-              >
-                Login
-              </button>
-            </Link>
-            <Link href="/signUp">
-              <button 
-                onClick={() => navigateToSection('demo')}
-                className="bg-blue-500 px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
-              >
-                SignUp
-              </button>
-            </Link>
+            <button 
+              onClick={() => navigateToSection('demo')}
+              className="bg-gradient-to-r from-green-600 to-orange-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
+            >
+              View Demo
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
