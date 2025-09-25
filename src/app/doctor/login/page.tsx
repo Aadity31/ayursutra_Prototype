@@ -106,7 +106,7 @@ const LoginPage = () => {
 
             <p className="mt-4 text-center text-sm" style={{ color: colors.textMuted }}>
               Don't have an account?{" "}
-              <Link href="/admin/signUp">
+              <Link href="/hospital/signUp">
                 <span style={{ color: colors.secondary, cursor: "pointer" }} className="hover:underline">
                   Sign up
                 </span>
