@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative w-12 h-12">
                 <Image
-                                src="/logo.svg"
+                                src="/logo-no-name.svg"
                                 alt="AyurSutra Logo"
                                 width={88}
                                 height={88}
