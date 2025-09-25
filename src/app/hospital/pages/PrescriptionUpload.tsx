@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import PrescriptionForm from "../components/hospital/PrescriptionForm";
-import Card from "../components/hospital/Card";
+import PrescriptionForm from "../../components/hospital/PrescriptionForm";
+import Card from "../../components/hospital/Card";
+import { Prescription } from "../../types/prescription";
 
-// Prescription interface
-export interface Prescription {
-  id: number;
-  patient: string;
-  advice: string;
-  date: string;
-}
-
-export default function PrescriptionUpload() {
+const PrescriptionUpload: React.FC = () => {
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
 
-  function handleSubmit(data: Omit<Prescription, "id">) {
+  const handleSubmit = (data: Omit<Prescription, "id">) => {
     setPrescriptions(prev => [...prev, { id: Date.now(), ...data }]);
-  }
+  };
 
   return (
-    <div className="space-y-6 p-4">
-      <h2 className="text-2xl font-semibold">Prescription Upload / Advice</h2>
+    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl font-bold text-gray-800">Prescription Upload / Advice</h2>
       <PrescriptionForm onSubmit={handleSubmit} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {prescriptions.map(p => (
           <Card key={p.id} title={p.patient}>
             <p className="text-gray-700">{p.advice}</p>
@@ -32,4 +25,6 @@ export default function PrescriptionUpload() {
       </div>
     </div>
   );
-}
+};
+
+export default PrescriptionUpload;

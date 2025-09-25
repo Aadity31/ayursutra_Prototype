@@ -1,25 +1,28 @@
 import React from "react";
-import { Notification } from "../../pages/Notifications";
+import Card from "./Card";
+import { Notification } from "../../types/notification";
 
-interface NotificationCardProps {
+interface Props {
   notification: Notification;
   onMarkRead: (id: number) => void;
 }
 
-const NotificationCard: React.FC<NotificationCardProps> = ({ notification, onMarkRead }) => {
+const NotificationCard: React.FC<Props> = ({ notification, onMarkRead }) => {
   return (
-    <div className={`border p-4 rounded shadow ${notification.read ? "bg-gray-100" : "bg-white"}`}>
-      <h3 className="font-semibold">{notification.title}</h3>
-      <p>{notification.message}</p>
-      {!notification.read && (
-        <button
-          className="mt-2 px-3 py-1 bg-blue-500 text-white rounded"
-          onClick={() => onMarkRead(notification.id)}
-        >
-          Mark as Read
-        </button>
-      )}
-    </div>
+    <Card title={notification.title}>
+      <p className="text-gray-700 text-sm mb-2">{notification.message}</p>
+      <div className="flex justify-end">
+        {!notification.read && (
+          <button
+            onClick={() => onMarkRead(notification.id)}
+            className="px-3 py-1 rounded bg-blue-600 text-white text-sm hover:bg-blue-700"
+          >
+            Mark as Read
+          </button>
+        )}
+        {notification.read && <span className="text-green-600 text-sm font-semibold">Read</span>}
+      </div>
+    </Card>
   );
 };
 
