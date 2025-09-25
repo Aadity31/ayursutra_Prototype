@@ -43,9 +43,11 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium">
-              View Demo
-            </button>
+            <Link href="/login">
+              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium cursor-pointer">
+                Login
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
