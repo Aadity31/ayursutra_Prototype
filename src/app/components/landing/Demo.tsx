@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function Demo() {
   return (
     <section id="demo" className="py-20 bg-gray-900 text-white">
@@ -25,12 +26,13 @@ export default function Demo() {
             <p className="text-gray-300 mb-4 text-sm">
               Hospital management, staff scheduling, and real-time analytics dashboard with AI insights.
             </p>
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
-              View Dashboard Demo
-            </button>
+            <Link href="/admin/login">
+              <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors text-sm">
+                Login as admin
+              </button>
+            </Link>
           </div>
 
-          {/* Doctor Panel Demo */}
           <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
             <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">👩‍⚕️</span>
@@ -39,8 +41,9 @@ export default function Demo() {
             <p className="text-gray-300 mb-4 text-sm">
               Patient management, treatment planning, and AI-generated therapy recommendations.
             </p>
+            <Link href="/hospital/login"></Link>
             <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
-              Try Doctor Panel
+              Login as a Doctor
             </button>
           </div>
 
