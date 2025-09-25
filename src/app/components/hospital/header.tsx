@@ -5,9 +5,9 @@ import Link from "next/link";
 import { lightColors, darkColors } from "../../constants/colors";
 import { getTheme, setTheme } from "../../constants/themeSelect";
 
-export default function Header() {
-  const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false); // <- for SSR hydration fix
+const Header: React.FC = () => {
+  const [isDark, setIsDark] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false); // SSR hydration fix
 
   useEffect(() => {
     setMounted(true);
@@ -20,7 +20,7 @@ export default function Header() {
     setIsDark(!isDark);
   };
 
-  if (!mounted) return null; // <- prevents SSR/client mismatch
+  if (!mounted) return null; // Prevent SSR/client mismatch
 
   const colors = getTheme();
 
@@ -45,13 +45,13 @@ export default function Header() {
               </span>
             </div>
             <div>
-              <Link href='/'>
-              <span className="text-2xl font-bold" style={{ color: colors.primary }}>
-                AyurSutra
-              </span>
-              <div className="text-xs -mt-1" style={{ color: colors.textMuted }}>
-                Smart India Hackathon 2025
-              </div>
+              <Link href="/">
+                <span className="text-2xl font-bold" style={{ color: colors.primary }}>
+                  AyurSutra
+                </span>
+                <div className="text-xs -mt-1" style={{ color: colors.textMuted }}>
+                  Smart India Hackathon 2025
+                </div>
               </Link>
             </div>
           </div>
@@ -78,9 +78,11 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          {/* ... */}
+          {/* Add mobile menu logic if needed */}
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Header;

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import Appointments from '../../hospital/pages/Appointments'
+
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

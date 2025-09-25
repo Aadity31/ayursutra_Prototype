@@ -9,7 +9,7 @@ import Impact from './components/landing/Impact'
 import Demo from './components/landing/Demo'
 import Team from './components/landing/Team'
 import Footer from './components/landing/Footer'
-import Appointments from './hospital/pages/Appointments'
+
 
 export default function AyurSutraLanding() {
   return (
