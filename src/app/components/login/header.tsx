@@ -45,12 +45,14 @@ export default function Header() {
               </span>
             </div>
             <div>
+              <Link href='/'>
               <span className="text-2xl font-bold" style={{ color: colors.primary }}>
                 AyurSutra
               </span>
               <div className="text-xs -mt-1" style={{ color: colors.textMuted }}>
                 Smart India Hackathon 2025
               </div>
+              </Link>
             </div>
           </div>
 
