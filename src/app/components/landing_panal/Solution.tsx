@@ -2,8 +2,8 @@ export default function Solution() {
   const features = [
     {
       icon: '🤖',
-      title: 'Automated Scheduling',
-      description: 'AI-powered appointment management with conflict prevention and optimal resource allocation'
+      title: 'AI Assistant Aayu',
+      description: 'A Chatbot AI support in multiple Indian languages'
     },
     {
       icon: '🔔',
@@ -27,8 +27,8 @@ export default function Solution() {
     },
     {
       icon: '🌐',
-      title: 'Multilingual Assistant',
-      description: 'Voice and text-based AI support in multiple Indian languages'
+      title: 'Automated Scheduling ',
+      description: 'AI-powered appointment management with conflict prevention and optimal resource allocation'
     }
   ]
 

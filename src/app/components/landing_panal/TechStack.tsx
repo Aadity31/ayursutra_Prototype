@@ -1,9 +1,9 @@
 export default function TechStack() {
   const technologies = [
-    { category: 'Frontend', items: ['React/Angular', 'Android (Java/Kotlin)', 'Responsive Web'] },
+    { category: 'Frontend', items: ['Next/js', 'Android (Java/Kotlin)', 'Responsive Web'] },
     { category: 'Backend', items: ['Node.js/Django', 'RESTful APIs', 'Real-time Processing'] },
-    { category: 'Database', items: ['PostgreSQL', 'MongoDB', 'Redis Cache'] },
-    { category: 'AI/ML', items: ['Python/TensorFlow', 'PyTorch', 'OpenAI GPT'] },
+    { category: 'Database', items: ['MongoDB', 'MongoDB', 'Redis Cache'] },
+    { category: 'AI/ML', items: ['Python/TensorFlow', 'PyTorch', 'Hugging Face'] },
     { category: 'Services', items: ['Twilio SMS', 'Firebase Push', 'Email Automation'] },
     { category: 'Cloud', items: ['AWS/Azure', 'Docker', 'Kubernetes'] }
   ]
