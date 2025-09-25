@@ -58,7 +58,7 @@ export default function Header() {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/signup">
+            <Link href="/doctor/signup">
               <button
                 className="px-6 py-2 rounded-lg font-medium cursor-pointer transition-all"
                 style={{ backgroundColor: colors.secondary, color: colors.highlight }}
