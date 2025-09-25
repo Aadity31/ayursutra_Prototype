@@ -1,0 +1,33 @@
+export const lightColors = {
+  bgDark: "oklch(0.92 0.03 154)",
+  bg: "oklch(0.96 0.03 154)",
+  bgLight: "oklch(1 0.03 154)",
+  text: "oklch(0.15 0.06 154)",
+  textMuted: "oklch(0.4 0.06 154)",
+  highlight: "oklch(1 0.06 154)",
+  border: "oklch(0.6 0.06 154)",
+  borderMuted: "oklch(0.7 0.06 154)",
+  primary: "oklch(0.4 0.1 154)",
+  secondary: "oklch(0.4 0.1 334)",
+  danger: "oklch(0.5 0.06 30)",
+  warning: "oklch(0.5 0.06 100)",
+  success: "oklch(0.5 0.06 160)",
+  info: "oklch(0.5 0.06 260)",
+};
+
+export const darkColors = {
+  bgDark: "oklch(0.92 0.015 140)",
+  bg: "oklch(0.96 0.015 140)",
+  bgLight: "oklch(1 0.015 140)",
+  text: "oklch(0.15 0.03 140)",
+  textMuted: "oklch(0.4 0.03 140)",
+  highlight: "oklch(1 0.03 140)",
+  border: "oklch(0.6 0.03 140)",
+  borderMuted: "oklch(0.7 0.03 140)",
+  primary: "oklch(0.4 0.1 140)",
+  secondary: "oklch(0.4 0.1 320)",
+  danger: "oklch(0.5 0.05 30)",
+  warning: "oklch(0.5 0.05 100)",
+  success: "oklch(0.5 0.05 160)",
+  info: "oklch(0.5 0.05 260)",
+};
