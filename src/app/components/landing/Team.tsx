@@ -16,7 +16,7 @@ export default function Team() {
       bio: "Passionate about healthcare technology and AI integration. Lead developer with 3+ years of web development experience.",
       linkedin: "https://www.linkedin.com/in/shwetanshu-bhatt-082167257/",
       github: "https://github.com/Shwetanshu-Bhatt",
-      image: "/team/bhatt.jpeg",
+      image: "/team/Shwetanshu.jpeg",
       expertise: "Frontend & Backend Development",
       color: "blue"
     },
