@@ -1,39 +1,51 @@
-// src/app/login/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { lightColors } from "../constants/colors";
+import { getTheme } from "../constants/themeSelect";
 import Header from "../components/login/header";
 
 const LoginPage = () => {
+  const [mounted, setMounted] = useState(false);
+  const [colors, setColors] = useState(getTheme());
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setMounted(true);
+
+    const interval = setInterval(() => {
+      const currentTheme = getTheme();
+      setColors((prev) => {
+        if (prev !== currentTheme) return currentTheme;
+        return prev;
+      });
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!mounted) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password });
   };
 
-  const colors = lightColors;
+  if (!mounted) return null; 
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header fixed at top */}
       <Header />
 
-      {/* Main login layout */}
       <div className="flex flex-1">
-        {/* Left side - form */}
         <div
           className="flex-1 flex flex-col justify-center items-center px-8"
           style={{ backgroundColor: colors.bg }}
         >
           <div className="w-full max-w-md">
-            <h1
-              className="text-3xl font-bold mb-2"
-              style={{ color: colors.primary }}
-            >
+            <h1 className="text-3xl font-bold mb-2" style={{ color: colors.primary }}>
               Welcome Back
             </h1>
             <p className="mb-6 text-sm" style={{ color: colors.textMuted }}>
@@ -92,16 +104,10 @@ const LoginPage = () => {
               </button>
             </form>
 
-            <p
-              className="mt-4 text-center text-sm"
-              style={{ color: colors.textMuted }}
-            >
+            <p className="mt-4 text-center text-sm" style={{ color: colors.textMuted }}>
               Don't have an account?{" "}
               <Link href="/signup">
-                <span
-                  style={{ color: colors.secondary, cursor: "pointer" }}
-                  className="hover:underline"
-                >
+                <span style={{ color: colors.secondary, cursor: "pointer" }} className="hover:underline">
                   Sign up
                 </span>
               </Link>
@@ -109,7 +115,6 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {/* Right side - gradient pattern */}
         <div
           className="flex-1 hidden md:block"
           style={{
@@ -119,7 +124,7 @@ const LoginPage = () => {
             backgroundSize: "50px 50px",
             backgroundPosition: "0 0, 25px 25px",
           }}
-        ></div>
+        />
       </div>
     </div>
   );
