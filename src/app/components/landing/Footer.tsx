@@ -19,7 +19,7 @@ export default function Footer() {
                               />
               </div>
               <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-green-400 via-orange-400 to-blue-400 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
                   AyurSutra
                 </span>
               </div>
