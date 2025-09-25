@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PrescriptionForm from "../../components/hospital/PrescriptionForm";
 import Card from "../../components/hospital/Card";
-import { Prescription } from "../types/prescription";
+import { Prescription } from "../../types/prescription";
 
 const PrescriptionUpload: React.FC = () => {
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
