@@ -28,7 +28,7 @@ export default function Demo() {
             </p>
             <Link href="/admin/login">
               <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors text-sm">
-                Login as admin
+                Login as an admin
               </button>
             </Link>
           </div>
@@ -44,7 +44,7 @@ export default function Demo() {
             <div className="flex flex-col md:flex-row gap-4 w-full mx-auto">
               <Link href="/hospital/login" className="flex-1">
                 <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
-                  Login as a Hospital Admin
+                  Login as an Admin
                 </button>
               </Link>
               <Link href="/doctor/login" className="flex-1">
