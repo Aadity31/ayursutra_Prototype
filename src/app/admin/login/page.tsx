@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getTheme } from "../constants/themeSelect";
-import Header from "../components/login/header";
+import { getTheme } from "../../constants/themeSelect";
+import Header from "../../components/login/header";
 
 const LoginPage = () => {
   const [mounted, setMounted] = useState(false);
@@ -21,7 +21,7 @@ const LoginPage = () => {
         if (prev !== currentTheme) return currentTheme;
         return prev;
       });
-    }, 50);
+    }, 100);
 
     return () => clearInterval(interval);
   }, []);
