@@ -1,4 +1,4 @@
-
+"use client";
 
 import React from "react";
 import Sidebar from "../../components/hospital/Sidebar";
@@ -6,12 +6,13 @@ import HeaderCards from "../../components/hospital/HeaderCards";
 import AddHospitalsCard from "../../components/hospital/AddHospitalsCard";
 import BannerCard from "../../components/hospital/BannerCard";
 import ActiveUsers from "../../components/hospital/ActiveUsers";
-import HospitalOverviewChart from "../../components/hospital/HospitalOverviewChart";
 import ReportsTable from "../../components/hospital/ReportsTable";
 import FeedbackSection from "../../components/hospital/FeedbackSection";
 
+import HospitalOverviewChart from "../../components/hospital/HospitalOverviewChart"; // assuming same folder or adjust path
+
 import { FiUser, FiCalendar, FiUsers, FiCheck } from "react-icons/fi";
-import { KPI, ChartData } from "../../types";
+import { KPI } from "../../types";
 
 const Dashboard: React.FC = () => {
   const headerCards: KPI[] = [
@@ -45,10 +46,8 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-  const chart: ChartData = {
+  const chart = {
     title: "Hospital Overview",
-    dateRange: "Jan - Mar 2025",
-    dataPoints: [],
   };
 
   return (
@@ -61,21 +60,18 @@ const Dashboard: React.FC = () => {
           <AddHospitalsCard
             text="Add new hospitals."
             link="#"
-            image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg" 
+            image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg"
           />
-          <div className="bg-white shadow-md rounded-xl p-6 flex items-center justify-center">
-            <p className="text-gray-400">[Customer Chart place customer data analysis will be shown here.]</p>
-          </div>
-         <BannerCard
-  image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
-  title="Upgrade Plan"
-  description="Get more features by upgrading your subscription."
-/>
-
+          
+          <BannerCard
+            image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
+            title="Upgrade Plan"
+            description="Get more features by upgrading your subscription."
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ActiveUsers users={200} clicks={1200} sales={320} items={50} />
+          <ActiveUsers />
           <HospitalOverviewChart chart={chart} />
         </div>
 
