@@ -1,28 +1,27 @@
-import React from "react";
-import Card from "./Card";
-import { Notification } from "../../types/notification";
+"use client";
 
-interface Props {
-  notification: Notification;
-  onMarkRead: (id: number) => void;
+import React from "react";
+
+// ✅ Props interface
+interface NotificationCardProps {
+  title: string;
+  message: string;
+  color?: string; // optional prop
 }
 
-const NotificationCard: React.FC<Props> = ({ notification, onMarkRead }) => {
+// ✅ Functional component with explicit generic
+const NotificationCard: React.FC<NotificationCardProps> = ({
+  title,
+  message,
+  color = "from-orange-300 to-orange-500",
+}) => {
   return (
-    <Card title={notification.title}>
-      <p className="text-gray-700 text-sm mb-2">{notification.message}</p>
-      <div className="flex justify-end">
-        {!notification.read && (
-          <button
-            onClick={() => onMarkRead(notification.id)}
-            className="px-3 py-1 rounded bg-blue-600 text-white text-sm hover:bg-blue-700"
-          >
-            Mark as Read
-          </button>
-        )}
-        {notification.read && <span className="text-green-600 text-sm font-semibold">Read</span>}
-      </div>
-    </Card>
+    <div
+      className={`bg-gradient-to-r ${color} text-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all`}
+    >
+      <h3 className="text-lg font-semibold mb-1">{title}</h3>
+      <p className="text-sm">{message}</p>
+    </div>
   );
 };
 
