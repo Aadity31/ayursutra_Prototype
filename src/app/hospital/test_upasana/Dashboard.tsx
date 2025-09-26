@@ -59,7 +59,7 @@ const Dashboard: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <AddHospitalsCard
-            text="Add new hospitals and manage existing ones."
+            text="Add new hospitals."
             link="#"
           />
           <div className="bg-white shadow-md rounded-xl p-6 flex items-center justify-center">
