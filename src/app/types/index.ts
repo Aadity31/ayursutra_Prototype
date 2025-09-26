@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { IconType } from "react-icons";
 
 export interface KPI {
   title: string;
@@ -24,4 +25,6 @@ export interface Feedback {
   hospital: string;
   date: string;
   completion: number;
+  icon: IconType;     
+  color: string;      
 }
