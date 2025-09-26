@@ -9,7 +9,7 @@ interface BannerCardProps {
 const BannerCard: React.FC<BannerCardProps> = ({ image, title, description }) => {
   return (
     <div className="bg-white shadow-md rounded-xl p-4 flex flex-col items-center text-center">
-      <img src={image} alt={title} className="w-full rounded-md mb-4" />
+    <img src="/Ayursutra (1).png" alt={title} className="w-full rounded-md mb-4" />
       <div className="text-gray-900 font-semibold text-lg">{title}</div>
       <p className="text-gray-600 text-sm mt-1">{description}</p>
     </div>
