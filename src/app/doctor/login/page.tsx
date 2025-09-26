@@ -1,133 +1,198 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { getTheme } from "../../constants/themeSelect";
-import Header from "../../components/doctor/header";
+import { useState } from 'react'
+import { Eye, EyeOff, Mountain, User, UserCheck } from 'lucide-react'
+import Image from 'next/image'
 
-const LoginPage = () => {
-  const [mounted, setMounted] = useState(false);
-  const [colors, setColors] = useState(getTheme());
+type UserRole = 'admin' | 'doctor'
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginPage() {
+  const [activeRole, setActiveRole] = useState<UserRole>('admin')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
-  useEffect(() => {
-    setMounted(true);
-
-    const interval = setInterval(() => {
-      const currentTheme = getTheme();
-      setColors((prev) => {
-        if (prev !== currentTheme) return currentTheme;
-        return prev;
-      });
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!mounted) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ email, password });
-  };
-
-  if (!mounted) return null; 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Login attempt:', { activeRole, email, password, rememberMe })
+    
+    // Role-based authentication logic
+    if (activeRole === 'admin') {
+      // Admin login API call
+      console.log('Admin login...')
+    } else {
+      // Doctor login API call
+      console.log('Doctor login...')
+    }
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center px-4 py-8">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+        {/* Logo Header */}
+        <div className="text-center mb-8">
+          <div className="flex flex-col items-center space-x-3">
+                                    <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
+                                        <Image
+                                            src="/logo-no-name.svg"
+                                            alt="AyurSutra Logo"
+                                            width={48}
+                                            height={48}
+                                            className="rounded-lg object-contain"
+                                            priority
+                                        />
+                                    </div>
+                                    <div>
+                                        <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
+                                            AyurSutra
+                                        </span>
+                                    </div>
+                                    </div>
+        </div>
 
-      <div className="flex flex-1">
-        <div
-          className="flex-1 flex flex-col justify-center items-center px-8"
-          style={{ backgroundColor: colors.bg }}
-        >
-          <div className="w-full max-w-md">
-            <h1 className="text-3xl font-bold mb-2" style={{ color: colors.primary }}>
-              Welcome Back
-            </h1>
-            <p className="mb-6 text-sm" style={{ color: colors.textMuted }}>
-              Enter your email and password to sign in
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-lg focus:outline-none"
-                style={{
-                  backgroundColor: colors.bgLight,
-                  border: `1px solid ${colors.border}`,
-                  color: colors.text,
-                }}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-lg focus:outline-none"
-                style={{
-                  backgroundColor: colors.bgLight,
-                  border: `1px solid ${colors.border}`,
-                  color: colors.text,
-                }}
-              />
-
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  className="mr-2"
-                  style={{ accentColor: colors.primary }}
-                />
-                <label htmlFor="remember" style={{ color: colors.textMuted }}>
-                  Remember me
-                </label>
-              </div>
-
+        {/* Role Switcher */}
+        <div className="mb-8">
+          <div className="relative bg-gray-100 rounded-xl p-1">
+            {/* Sliding Background */}
+            <div 
+              className={`absolute top-1 bottom-1 w-1/2 bg-teal-500 rounded-lg transition-all duration-300 ease-in-out transform ${
+                activeRole === 'doctor' ? 'translate-x-full' : 'translate-x-0'
+              }`}
+            />
+            
+            {/* Role Buttons */}
+            <div className="relative flex">
               <button
-                type="submit"
-                className="w-full py-2 rounded-lg font-medium cursor-pointer hover:shadow-lg transition-all"
-                style={{
-                  backgroundColor: colors.primary,
-                  color: colors.highlight,
-                }}
+                type="button"
+                onClick={() => setActiveRole('admin')}
+                className={`flex-1 flex items-center justify-center px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 ease-in-out ${
+                  activeRole === 'admin' 
+                    ? 'text-white' 
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
               >
-                Sign In
+                <UserCheck className="w-4 h-4 mr-2" />
+                Admin
               </button>
-            </form>
-
-            <p className="mt-4 text-center text-sm" style={{ color: colors.textMuted }}>
-              Don't have an account?{" "}
-              <Link href="/hospital/signUp">
-                <span style={{ color: colors.secondary, cursor: "pointer" }} className="hover:underline">
-                  Sign up
-                </span>
-              </Link>
-            </p>
+              
+              <button
+                type="button"
+                onClick={() => setActiveRole('doctor')}
+                className={`flex-1 flex items-center justify-center px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 ease-in-out ${
+                  activeRole === 'doctor' 
+                    ? 'text-white' 
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                <User className="w-4 h-4 mr-2" />
+                Doctor
+              </button>
+            </div>
           </div>
         </div>
 
-        <div
-          className="flex-1 hidden md:block"
-          style={{
-            backgroundColor: colors.bgDark,
-            backgroundImage:
-              "linear-gradient(135deg, rgba(255,255,255,0.1) 25%, transparent 25%), linear-gradient(225deg, rgba(255,255,255,0.1) 25%, transparent 25%)",
-            backgroundSize: "50px 50px",
-            backgroundPosition: "0 0, 25px 25px",
-          }}
-        />
+        {/* Dynamic Welcome Message */}
+        <div className="text-center mb-8">
+          {/* <h2 className="text-3xl font-light text-teal-500 mb-2">
+            Welcome Back
+          </h2> */}
+          <p className="text-gray-600 text-sm">
+            Sign in as {activeRole === 'admin' ? 'Administrator' : 'Doctor'}
+          </p>
+        </div>
+
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Field */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+              placeholder={`Enter your ${activeRole} email`}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          {/* Password Field */}
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                required
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Remember Me */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-teal-500 focus:ring-teal-500 border-gray-300 rounded transition-colors"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <label htmlFor="remember-me" className="ml-2 text-sm text-gray-700">
+                Remember me
+              </label>
+            </div>
+            
+            <a href="#" className="text-sm text-teal-500 hover:text-teal-600 transition-colors">
+              Forgot password?
+            </a>
+          </div>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          >
+            Sign in as {activeRole === 'admin' ? 'Admin' : 'Doctor'}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-600">
+            Need help?{' '}
+            <a href="#" className="text-teal-500 hover:text-teal-600 transition-colors font-medium">
+              Contact Support
+            </a>
+          </p>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default LoginPage;
+  )
+}

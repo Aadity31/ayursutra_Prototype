@@ -1,133 +1,164 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { getTheme } from "../../constants/themeSelect";
-import Header from "../../components/admin/header";
+import { useState } from 'react'
+import { Eye, EyeOff, Mountain, UserCheck } from 'lucide-react'
+import Image from 'next/image'
 
-const LoginPage = () => {
-  const [mounted, setMounted] = useState(false);
-  const [colors, setColors] = useState(getTheme());
+export default function AdminLoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    setMounted(true);
-
-    const interval = setInterval(() => {
-      const currentTheme = getTheme();
-      setColors((prev) => {
-        if (prev !== currentTheme) return currentTheme;
-        return prev;
-      });
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!mounted) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ email, password });
-  };
-
-  if (!mounted) return null; 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Admin login attempt:', { email, password, rememberMe })
+    
+    // Admin-specific authentication logic
+    try {
+      // Call admin login API
+      console.log('Processing admin authentication...')
+      // Handle admin login success/error
+    } catch (error) {
+      console.error('Admin login failed:', error)
+    }
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <div className="flex flex-1">
-        <div
-          className="flex-1 flex flex-col justify-center items-center px-8"
-          style={{ backgroundColor: colors.bg }}
-        >
-          <div className="w-full max-w-md">
-            <h1 className="text-3xl font-bold mb-2" style={{ color: colors.primary }}>
-              Welcome Back
-            </h1>
-            <p className="mb-6 text-sm" style={{ color: colors.textMuted }}>
-              Enter your email and password to sign in
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-lg focus:outline-none"
-                style={{
-                  backgroundColor: colors.bgLight,
-                  border: `1px solid ${colors.border}`,
-                  color: colors.text,
-                }}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-lg focus:outline-none"
-                style={{
-                  backgroundColor: colors.bgLight,
-                  border: `1px solid ${colors.border}`,
-                  color: colors.text,
-                }}
-              />
-
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  className="mr-2"
-                  style={{ accentColor: colors.primary }}
-                />
-                <label htmlFor="remember" style={{ color: colors.textMuted }}>
-                  Remember me
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-2 rounded-lg font-medium cursor-pointer hover:shadow-lg transition-all"
-                style={{
-                  backgroundColor: colors.primary,
-                  color: colors.highlight,
-                }}
-              >
-                Sign In
-              </button>
-            </form>
-
-            <p className="mt-4 text-center text-sm" style={{ color: colors.textMuted }}>
-              Don't have an account?{" "}
-              <Link href="/admin/signUp">
-                <span style={{ color: colors.secondary, cursor: "pointer" }} className="hover:underline">
-                  Sign up
-                </span>
-              </Link>
-            </p>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center px-4 py-8">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+        {/* Logo Header */}
+        <div className="text-center mb-8">
+          <div className="flex flex-col items-center space-x-3">
+                          <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
+                              <Image
+                                  src="/logo-no-name.svg"
+                                  alt="AyurSutra Logo"
+                                  width={48}
+                                  height={48}
+                                  className="rounded-lg object-contain"
+                                  priority
+                              />
+                          </div>
+                          <div>
+                              <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
+                                  AyurSutra
+                              </span>
+                          </div>
+                      </div>
+          {/* <div className="bg-blue-100 rounded-lg p-3 mb-4">
+            <UserCheck className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+            <span className="text-blue-600 font-medium text-sm">Administrator Portal</span>
+          </div> */}
         </div>
 
-        <div
-          className="flex-1 hidden md:block"
-          style={{
-            backgroundColor: colors.bgDark,
-            backgroundImage:
-              "linear-gradient(135deg, rgba(255,255,255,0.1) 25%, transparent 25%), linear-gradient(225deg, rgba(255,255,255,0.1) 25%, transparent 25%)",
-            backgroundSize: "50px 50px",
-            backgroundPosition: "0 0, 25px 25px",
-          }}
-        />
+        {/* Welcome Message */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-light text-blue-500 mb-2">
+            Admin Dashboard
+          </h2>
+          <p className="text-gray-600 text-sm">
+            Sign in to access administrative controls
+          </p>
+        </div>
+
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Field */}
+          <div>
+            <label htmlFor="admin-email" className="block text-sm font-medium text-gray-700 mb-2">
+              Admin Email Address
+            </label>
+            <input
+              id="admin-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              placeholder="Enter your admin email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          {/* Password Field */}
+          <div>
+            <label htmlFor="admin-password" className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                id="admin-password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                required
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                placeholder="Enter your admin password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Remember Me */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="admin-remember"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-300 rounded transition-colors"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <label htmlFor="admin-remember" className="ml-2 text-sm text-gray-700">
+                Remember me
+              </label>
+            </div>
+            
+            <a href="#" className="text-sm text-blue-500 hover:text-blue-600 transition-colors">
+              Forgot password?
+            </a>
+          </div>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Sign in as Administrator
+          </button>
+        </form>
+
+        {/* Footer */}
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-600">
+            manage Hospital ?{' '}
+            <a href="/doctor/login" className="text-blue-500 hover:text-blue-600 transition-colors font-medium">
+              Hospital Login
+            </a>
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            Need help?{' '}
+            <a href="#" className="text-blue-500 hover:text-blue-600 transition-colors font-medium">
+              Contact IT Support
+            </a>
+          </p>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default LoginPage;
+  )
+}

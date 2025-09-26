@@ -37,19 +37,19 @@ export default function Demo() {
             <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">👩‍⚕️</span>
             </div>
-            <h3 className="text-xl font-bold mb-3">Doctor Interface</h3>
+            <h3 className="text-xl font-bold mb-3">Hospital/Doctor</h3>
             <p className="text-gray-300 mb-4 text-sm">
               Patient management, treatment planning, and AI-generated therapy recommendations.
             </p>
             <div className="flex flex-col md:flex-row gap-4 w-full mx-auto">
-              <Link href="/hospital/login" className="flex-1">
+              {/* <Link href="/hospital/login" className="flex-1">
                 <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
                   Login as an Admin
                 </button>
-              </Link>
+              </Link> */}
               <Link href="/doctor/login" className="flex-1">
                 <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
-                  Login as a Doctor
+                  Login 
                 </button>
               </Link>
             </div>
