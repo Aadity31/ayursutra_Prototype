@@ -11,7 +11,7 @@ import ReportsTable from "../../components/hospital/ReportsTable";
 import FeedbackSection from "../../components/hospital/FeedbackSection";
 
 import { FiUser, FiCalendar, FiUsers, FiCheck } from "react-icons/fi";
-import { KPI, ChartData, Report } from "../../types";
+import { KPI, ChartData } from "../../types";
 
 const Dashboard: React.FC = () => {
   const headerCards: KPI[] = [
@@ -51,11 +51,6 @@ const Dashboard: React.FC = () => {
     dataPoints: [],
   };
 
-  const reports: Report[] = [
-    { hospital: "City Hospital", patients: 120, duration: "3 months" },
-    { hospital: "Green Valley", patients: 85, duration: "2 months" },
-  ];
-
   return (
     <div className="flex">
       <Sidebar />
@@ -83,8 +78,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ReportsTable reports={reports} />
-          {/* ✅ No props passed anymore */}
+          <ReportsTable />
           <FeedbackSection />
         </div>
       </main>
