@@ -67,7 +67,7 @@ export default function Demo() {
             <Link href="/patient/login" className="flex-1">
                 <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm">
                   Login as User
-                </button>
+                </button> 
             </Link>
           </div>
         </div>
