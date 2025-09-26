@@ -1,4 +1,4 @@
-// src/pages/Dashboard.tsx
+
 
 import React from "react";
 import Sidebar from "../../components/hospital/Sidebar";
@@ -61,15 +61,17 @@ const Dashboard: React.FC = () => {
           <AddHospitalsCard
             text="Add new hospitals."
             link="#"
+            image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg" 
           />
           <div className="bg-white shadow-md rounded-xl p-6 flex items-center justify-center">
-            <p className="text-gray-400">[Custom Card Placeholder]</p>
+            <p className="text-gray-400">[Customer Chart place customer data analysis will be shown here.]</p>
           </div>
-          <BannerCard
-            image="https://via.placeholder.com/300x120"
-            title="Upgrade Plan"
-            description="Get more features by upgrading your subscription."
-          />
+         <BannerCard
+  image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
+  title="Upgrade Plan"
+  description="Get more features by upgrading your subscription."
+/>
+
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
