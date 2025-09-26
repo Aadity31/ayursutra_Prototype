@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 export default function Header() {
@@ -34,7 +35,9 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
+          <Link href="/#hero" >
           <div className="flex items-center space-x-3">
+            
             <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-no-name.svg"
@@ -51,7 +54,9 @@ export default function Header() {
               </span>
               <div className="text-xs text-gray-500 -mt-1">Smart India Hackathon 2025</div>
             </div>
+            
           </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -105,6 +110,13 @@ export default function Header() {
             >
               View Demo
             </button>
+            <Link href="/hospital/appointments" >
+            <button
+              className="bg-gradient-to-r from-green-600 to-orange-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
+            >
+              test upasna
+            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
