@@ -1,7 +1,7 @@
 'use client'; 
 
 import React, { useState } from "react";
-import AppointmentList from "../../components/hospital/AppointmentList";
+// import AppointmentList from "../../components/hospital/AppointmentList";
 import { Appointment } from "../../types/appointment";
 
 const Appointments: React.FC = () => {
@@ -17,7 +17,7 @@ const Appointments: React.FC = () => {
   return (
     <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
       <h2 className="text-3xl font-bold text-gray-800">Patient Appointments</h2>
-      <AppointmentList appointments={appointments} onUpdateStatus={updateStatus} />
+{/*       <AppointmentList appointments={appointments} onUpdateStatus={updateStatus} /> */}
     </div>
   );
 };
