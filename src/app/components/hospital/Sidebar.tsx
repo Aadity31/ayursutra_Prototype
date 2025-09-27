@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="w-64 bg-white border-r h-screen sticky top-0 p-6 flex flex-col justify-between">
       <div>
-        <div className="text-2xl font-bold text-indigo-600 mb-8">AyuSutra</div>
+        <div className="text-2xl font-bold text-indigo-600 mb-8">AyurSutra</div>
         <nav className="space-y-4">
           {/* Dashboard link updated */}
           <Link
