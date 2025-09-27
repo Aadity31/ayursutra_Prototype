@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
 
           {/* Hospital page */}
           <Link
-            href="/hospital/test_upasana/hospital"
+            href="/hospital/test_upasana/manage_hospiital"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
           >
             <FiUsers /> Hospital
