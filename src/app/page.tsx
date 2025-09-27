@@ -9,6 +9,7 @@ import Impact from './components/landing/Impact'
 import Demo from './components/landing/Demo'
 import Team from './components/landing/Team'
 import Footer from './components/landing/Footer'
+import Ayuu from './components/landing/Ai'
 
 
 export default function AyurSutraLanding() {
@@ -42,6 +43,7 @@ export default function AyurSutraLanding() {
           <Hero />
           <ProblemStatement />
           <Solution />
+          <Ayuu />
           <AIFeatures />
           <TechStack />
           <Impact />
