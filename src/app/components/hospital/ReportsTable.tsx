@@ -11,7 +11,7 @@ const ReportsTable: React.FC = () => {
       <p className="text-green-600 text-sm font-medium mb-6">30 done this month</p>
 
       <div className="grid grid-cols-12 gap-4 font-semibold text-gray-600 border-b border-gray-200 pb-2 mb-3">
-        <div className="col-span-6">Hospital</div>
+        <div className="col-span-6">Therapy</div>
         <div className="col-span-3">Patients</div>
         <div className="col-span-3">Status</div>
       </div>

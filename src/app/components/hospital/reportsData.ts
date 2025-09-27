@@ -13,35 +13,35 @@ interface ReportWithIcon {
 
 export const reportsData: ReportWithIcon[] = [
   {
-    hospital: "Max Super Speciality Hospital",
+    hospital: "Vamana",
     patients: 14000,
     duration: "1 Month",
     icon: FiActivity,
     color: "#4F46E5", // Indigo
   },
   {
-    hospital: "Apollo Hospital",
+    hospital: "Virechana",
     patients: 1000,
     duration: "1 Week",
     icon: FiDatabase,
     color: "#059669", // Emerald
   },
   {
-    hospital: "Fortis Healthcare",
+    hospital: "Basti",
     patients: 700,
     duration: "1 Day",
     icon: FiHeart,
     color: "#EF4444", // Red
   },
   {
-    hospital: "City Care Hospital",
+    hospital: "Nasya",
     patients: 1687,
     duration: "1 Month",
     icon: FiActivity,
     color: "#4F46E5",
   },
   {
-    hospital: "Green Valley Hospital",
+    hospital: "Raktamokshana",
     patients: 587,
     duration: "1 Month",
     icon: FiDatabase,
