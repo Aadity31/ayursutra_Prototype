@@ -1,21 +1,18 @@
 "use client";
 
 import React from "react";
-import Sidebar from "../../components/hospital/Sidebar";
 import HeaderCards from "../../components/hospital/HeaderCards";
 import AddHospitalsCard from "../../components/hospital/AddHospitalsCard";
 import BannerCard from "../../components/hospital/BannerCard";
 import ActiveUsers from "../../components/hospital/ActiveUsers";
 import ReportsTable from "../../components/hospital/ReportsTable";
 import FeedbackSection from "../../components/hospital/FeedbackSection";
-
 import HospitalOverviewChart from "../../components/hospital/HospitalOverviewChart";
 
 import { FiUser, FiCalendar, FiUsers, FiCheck } from "react-icons/fi";
 import { KPI } from "../../types";
 
 const SmallStatsCard: React.FC = () => {
-  // Sample stats
   const stats = [
     { icon: <FiUser className="text-blue-500" />, label: "Active Users", value: 200 },
     { icon: <FiUsers className="text-green-500" />, label: "Total Users", value: 250 },
@@ -74,47 +71,40 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex">
-      <Sidebar />
-      <main className="flex-1 bg-gray-50 min-h-screen p-6 space-y-8">
-        <HeaderCards cards={headerCards} />
+    <div className="space-y-8">
+      <HeaderCards cards={headerCards} />
 
-        {/* Top section: 3 columns with equal width and spacing */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="w-full">
-            <AddHospitalsCard
-              text="Add new hospitals."
-              link="#"
-              image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg"
-            />
-          </div>
-
-          <div className="w-full flex justify-center">
-            <BannerCard
-              image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
-              title="Upgrade Plan"
-              description="Get more features by upgrading your subscription."
-              
-            />
-          </div>
-
-          <div className="w-full flex justify-center">
-            <SmallStatsCard />
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="w-full">
+          <AddHospitalsCard
+            text="Add new hospitals."
+            link="#"
+            image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg"
+          />
         </div>
 
-        {/* Mid section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ActiveUsers />
-          <HospitalOverviewChart chart={chart} />
+        <div className="w-full flex justify-center">
+          <BannerCard
+            image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
+            title="Upgrade Plan"
+            description="Get more features by upgrading your subscription."
+          />
         </div>
 
-        {/* Bottom section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ReportsTable />
-          <FeedbackSection />
+        <div className="w-full flex justify-center">
+          <SmallStatsCard />
         </div>
-      </main>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ActiveUsers />
+        <HospitalOverviewChart chart={chart} />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ReportsTable />
+        <FeedbackSection />
+      </div>
     </div>
   );
 };

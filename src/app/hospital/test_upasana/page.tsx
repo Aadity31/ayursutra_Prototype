@@ -1,7 +1,7 @@
-import Dashboard from "./Dashboard";
 
-function App() {
+"use client";
+
+import Dashboard from "./Dashboard"; 
+export default function TestUpasanaDashboardPage() {
   return <Dashboard />;
 }
-
-export default App;
