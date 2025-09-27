@@ -19,9 +19,7 @@ const Sidebar: React.FC = () => {
           <a href="#" className="flex items-center gap-3 text-gray-700 hover:text-indigo-600">
             <FiSettings /> Settings
           </a>
-          <a href="#" className="flex items-center gap-3 text-gray-700 hover:text-indigo-600">
-            <FiFileText /> Requests
-          </a>
+          
         </nav>
       </div>
       <div className="bg-gray-100 p-4 rounded-lg flex items-center gap-3 text-gray-700">
