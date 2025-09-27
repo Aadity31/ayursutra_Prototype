@@ -2,13 +2,15 @@
 
 import Sidebar from "../../components/hospital/Sidebar";
 
-export default function TestUpasanaLayout({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function TestUpasanaLayout({ children }: Props) {
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
-      <main className="flex-1 bg-gray-50 min-h-screen p-6">
-        {children}
-      </main>
+      <main className="flex-1 p-6">{children}</main>
     </div>
   );
 }

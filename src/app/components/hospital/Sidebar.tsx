@@ -13,7 +13,7 @@ const Sidebar: React.FC = () => {
       <div>
         <div className="text-2xl font-bold text-indigo-600 mb-8">AyurSutra</div>
         <nav className="space-y-4">
-          {/* Dashboard link updated */}
+          {/* Dashboard link */}
           <Link
             href="/hospital/test_upasana"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
@@ -29,13 +29,15 @@ const Sidebar: React.FC = () => {
             <FiUsers /> Hospital
           </Link>
 
+          {/* Analytics page */}
           <Link
-            href="/analytics"
+            href="/hospital/test_upasana/analytics"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
           >
             <FiBarChart2 /> Analytics
           </Link>
 
+          {/* Settings */}
           <Link
             href="/settings"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"

@@ -10,7 +10,7 @@ const HospitalFeatures = () => {
           <FaClock className="text-indigo-500 text-2xl" />
           <div>
             <div className="text-sm text-gray-500">Timings</div>
-            <div className="text-green-600">24x7</div>
+            <div className="text-green-600">09:00am-06:00pm</div>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -24,7 +24,7 @@ const HospitalFeatures = () => {
           <FaStar className="text-yellow-500 text-2xl" />
           <div>
             <div className="text-sm text-gray-500">Specialties</div>
-            <div className="text-green-600">Cardio, Ortho, Neuro</div>
+            <div className="text-green-600">Virechana, Basti, Raktamokshana,Swedana</div>
           </div>
         </div>
       </div>

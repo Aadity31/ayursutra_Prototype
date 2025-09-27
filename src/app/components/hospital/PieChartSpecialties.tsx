@@ -2,10 +2,10 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { name: 'Cardiology', value: 40 },
-  { name: 'Orthopedics', value: 25 },
-  { name: 'Neurology', value: 20 },
-  { name: 'Dermatology', value: 15 },
+  { name: 'Virechana', value: 40 },
+  { name: 'Basti', value: 25 },
+  { name: 'Raktamokshana', value: 20 },
+  { name: 'Swedana', value: 15 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
