@@ -17,14 +17,7 @@ export default function LoginPage() {
           }`}
         >
           {/* Login Component */}
-          <div className="w-1/2 h-full">
-            <LoginComponent onSwitchToSignup={() => setIsSignup(true)} />
-          </div>
           
-          {/* Signup Component */}
-          <div className="w-1/2 h-full">
-            <SignupComponent onSwitchToLogin={() => setIsSignup(false)} />
-          </div>
         </div>
       </div>
     </div>
