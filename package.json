@@ -24,6 +24,8 @@
     "@types/node": "20.19.17",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19",
+    "@types/react-icons": "^2.2.7",
+    "@types/recharts": "^1.8.29",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
