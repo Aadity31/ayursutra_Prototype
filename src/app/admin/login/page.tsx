@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Eye, EyeOff, Mountain, UserCheck } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 
 export default function AdminLoginPage() {
@@ -11,55 +11,52 @@ export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Admin login attempt:', { email, password, rememberMe })
-    
-    // Admin-specific authentication logic
-    try {
-      // Call admin login API
-      console.log('Processing admin authentication...')
-      // Handle admin login success/error
-    } catch (error) {
-      console.error('Admin login failed:', error)
-    }
+  e.preventDefault();
+
+  const loginData = { email, password, rememberMe };
+
+  try {
+    const res = await fetch("/api/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData),
+    });
+
+    const result = await res.json();
+    console.log("Login saved:", result);
+  } catch (error) {
+    console.error("Error saving login:", error);
   }
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center px-4 py-8">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+        
         {/* Logo Header */}
         <div className="text-center mb-8">
-          <div className="flex flex-col items-center space-x-3">
-                          <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
-                              <Image
-                                  src="/logo-no-name.svg"
-                                  alt="AyurSutra Logo"
-                                  width={48}
-                                  height={48}
-                                  className="rounded-lg object-contain"
-                                  priority
-                              />
-                          </div>
-                          <div>
-                              <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
-                                  AyurSutra
-                              </span>
-                          </div>
-                      </div>
-          {/* <div className="bg-blue-100 rounded-lg p-3 mb-4">
-            <UserCheck className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-            <span className="text-blue-600 font-medium text-sm">Administrator Portal</span>
-          </div> */}
+          <div className="flex flex-col items-center">
+            <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
+              <Image
+                src="/logo-no-name.svg"
+                alt="AyurSutra Logo"
+                width={48}
+                height={48}
+                className="rounded-lg object-contain"
+                priority
+              />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600 bg-clip-text text-transparent mt-2">
+              AyurSutra
+            </span>
+          </div>
         </div>
 
         {/* Welcome Message */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-light text-blue-500 mb-2">
-            Admin Dashboard
-          </h2>
-          <p className="text-gray-600 text-sm">
-            Sign in to access administrative controls
-          </p>
+          <h2 className="text-3xl font-light text-blue-500 mb-2">Admin Login</h2>
+          <p className="text-gray-600 text-sm">Sign in to access administrative controls</p>
         </div>
 
         {/* Login Form */}
@@ -67,7 +64,7 @@ export default function AdminLoginPage() {
           {/* Email Field */}
           <div>
             <label htmlFor="admin-email" className="block text-sm font-medium text-gray-700 mb-2">
-              Admin Email Address
+              Email Address
             </label>
             <input
               id="admin-email"
@@ -75,8 +72,8 @@ export default function AdminLoginPage() {
               type="email"
               autoComplete="email"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-              placeholder="Enter your admin email"
+              className="w-full px-4 py-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -94,21 +91,18 @@ export default function AdminLoginPage() {
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
                 required
-                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                placeholder="Enter your admin password"
+                className="w-full px-4 py-3 pr-12 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
+                aria-label="Toggle password visibility"
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? (
-                  <EyeOff className="h-5 w-5" />
-                ) : (
-                  <Eye className="h-5 w-5" />
-                )}
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
           </div>
@@ -128,7 +122,6 @@ export default function AdminLoginPage() {
                 Remember me
               </label>
             </div>
-            
             <a href="#" className="text-sm text-blue-500 hover:text-blue-600 transition-colors">
               Forgot password?
             </a>
@@ -146,7 +139,7 @@ export default function AdminLoginPage() {
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
-            manage Hospital ?{' '}
+            Manage Hospital?{' '}
             <a href="/doctor/login" className="text-blue-500 hover:text-blue-600 transition-colors font-medium">
               Hospital Login
             </a>
