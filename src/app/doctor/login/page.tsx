@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import { Eye, EyeOff, Mountain, User, UserCheck } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 type UserRole = 'admin' | 'doctor'
 
 export default function LoginPage() {
+  const router = useRouter();
   const [activeRole, setActiveRole] = useState<UserRole>('admin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -14,18 +16,36 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Login attempt:', { activeRole, email, password, rememberMe })
-    
-    // Role-based authentication logic
-    if (activeRole === 'admin') {
-      // Admin login API call
-      console.log('Admin login...')
+  e.preventDefault();
+
+  const loginData = { activeRole, email, password, rememberMe };
+
+  try {
+    const res = await fetch("/api/doctor-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData),
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      console.log("Login attempt logged successfully!");
+
+      // Redirect based on role
+      if (activeRole === "admin") {
+        router.push("/hospital/dashboard"); // your admin page
+      } else {
+        router.push("/doctor/dashboard"); // your doctor page
+      }
+
     } else {
-      // Doctor login API call
-      console.log('Doctor login...')
+      console.error("Failed to log login attempt");
     }
+  } catch (error) {
+    console.error("Error logging login attempt:", error);
   }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center px-4 py-8">
@@ -33,22 +53,22 @@ export default function LoginPage() {
         {/* Logo Header */}
         <div className="text-center mb-8">
           <div className="flex flex-col items-center space-x-3">
-                                    <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
-                                        <Image
-                                            src="/logo-no-name.svg"
-                                            alt="AyurSutra Logo"
-                                            width={48}
-                                            height={48}
-                                            className="rounded-lg object-contain"
-                                            priority
-                                        />
-                                    </div>
-                                    <div>
-                                        <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
-                                            AyurSutra
-                                        </span>
-                                    </div>
-                                    </div>
+            <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
+                <Image
+                    src="/logo-no-name.svg"
+                    alt="AyurSutra Logo"
+                    width={48}
+                    height={48}
+                    className="rounded-lg object-contain"
+                    priority
+                />
+            </div>
+            <div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
+                    AyurSutra
+                </span>
+            </div>
+            </div>
         </div>
 
         {/* Role Switcher */}
