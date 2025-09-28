@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { kv } from "@vercel/kv";
 
 interface PatientLogin {
   email: string;
@@ -19,22 +18,18 @@ export async function POST(req: NextRequest) {
   try {
     const body: PatientLoginRequest = await req.json();
 
-    const filePath = path.join(process.cwd(), "patient-logins.json");
-
-    let logins: PatientLogin[] = [];
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, "utf-8");
-      logins = JSON.parse(data || "[]") as PatientLogin[];
-    }
-
     const newEntry: PatientLogin = {
       ...body,
       timestamp: new Date().toISOString(),
     };
 
-    logins.push(newEntry);
+    // Fetch existing logins from KV
+    const existingLogins = (await kv.get("patient-logins")) as PatientLogin[] | null;
 
-    fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
+    const updatedLogins = existingLogins ? [...existingLogins, newEntry] : [newEntry];
+
+    // Save updated logins back to KV
+    await kv.set("patient-logins", updatedLogins);
 
     return NextResponse.json({ success: true });
   } catch (err) {

