@@ -1,11 +1,11 @@
 "use client";
 import React from 'react';
 import Header from './Header';
-import DashboardContent from './DashboardContent.tsx';
-import HospitalContent from './HospitalContent.tsx';
-import AnalyticsContent from './AnalyticsContent.tsx';
-import SettingsContent from './SettingsContent.tsx';
-import BillsContent from './BillsContent.tsx';
+import DashboardContent from './DashboardContent';
+import HospitalContent from './HospitalContent';
+import AnalyticsContent from './AnalyticsContent';
+import SettingsContent from './SettingsContent';
+import BillsContent from './BillsContent';
 
 interface MainContentProps {
   activeSection: string;
