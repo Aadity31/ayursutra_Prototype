@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
         <nav className="space-y-4">
           {/* Dashboard link */}
           <Link
-            href="/hospital/test_upasana"
+            href="/hospital/dashboard"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
           >
             <FiHome /> Dashboard
@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
 
           {/* Hospital page */}
           <Link
-            href="/hospital/test_upasana/manage"
+            href="/hospital/dashboard/manage"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
           >
             <FiUsers /> Hospital
@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
 
           {/* Analytics page */}
           <Link
-            href="/hospital/test_upasana/analytics"
+            href="/hospital/dashboard/analytics"
             className="flex items-center gap-3 text-gray-700 hover:text-indigo-600"
           >
             <FiBarChart2 /> Analytics
