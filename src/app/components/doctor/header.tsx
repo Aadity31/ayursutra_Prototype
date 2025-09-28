@@ -7,7 +7,7 @@ import { getTheme, setTheme } from "../../constants/themeSelect";
 
 export default function Header() {
   const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false); // <- for SSR hydration fix
+  const [mounted, setMounted] = useState(false); 
 
   useEffect(() => {
     setMounted(true);
