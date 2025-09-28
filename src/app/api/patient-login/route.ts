@@ -2,27 +2,27 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-interface PatientLogin {
-  [key: string]: unknown; // agar aapko dynamic fields allow karni hain
-  timestamp: string;
-}
+type LoginEntry = Record<string, unknown> & { timestamp: string };
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body = (await req.json()) as Record<string, unknown>;
 
     const filePath = path.join(process.cwd(), "patient-logins.json");
 
-    let logins: PatientLogin[] = [];
+    const logins: LoginEntry[] = [];
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, "utf-8");
-      logins = JSON.parse(data || "[]") as PatientLogin[];
+      const parsed = (data ? JSON.parse(data) : []) as LoginEntry[];
+      logins.push(...parsed);
     }
 
-    logins.push({
+    const entry: LoginEntry = {
       ...body,
       timestamp: new Date().toISOString(),
-    });
+    };
+
+    logins.push(entry);
 
     fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
 
