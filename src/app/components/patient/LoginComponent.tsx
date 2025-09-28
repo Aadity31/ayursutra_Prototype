@@ -44,7 +44,7 @@ export default function LoginComponent({ onSwitchToSignup }: LoginComponentProps
         <div className="h-full flex flex-col justify-center p-12">
             {/* Logo Header */}
         
-            <div className="flex justify-center flex items-center space-x-3">
+            <div className="flex justify-center items-center space-x-3">
                 <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
                     <Image
                         src="/logo-no-name.svg"
