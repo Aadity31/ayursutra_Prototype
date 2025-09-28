@@ -1,23 +1,8 @@
 [
   {
-    "activeRole": "doctor",
-    "email": "doc@doc",
-    "password": "pass1234@",
-    "rememberMe": false,
-    "timestamp": "2025-09-28T07:52:21.891Z"
-  },
-  {
-    "activeRole": "admin",
     "email": "admin@admin",
-    "password": "admin@123",
+    "password": "pass1234",
     "rememberMe": false,
-    "timestamp": "2025-09-28T07:53:02.331Z"
-  },
-  {
-    "activeRole": "admin",
-    "email": "admin@admin",
-    "password": "pass12343",
-    "rememberMe": false,
-    "timestamp": "2025-09-28T07:53:26.470Z"
+    "timestamp": "2025-09-28T13:41:14.041Z"
   }
 ]
