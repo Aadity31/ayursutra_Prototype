@@ -1,29 +1,34 @@
-// import { NextResponse } from "next/server";
-// import fs from "fs";
-// import path from "path";
+import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
-// export async function POST(req: Request) {
-//   try {
-//     const body = await req.json(); 
+interface PatientLogin {
+  [key: string]: unknown; // agar aapko dynamic fields allow karni hain
+  timestamp: string;
+}
 
-//     const filePath = path.join(process.cwd(), "patient-logins.json");
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
 
-//     let logins: any[] = [];
-//     if (fs.existsSync(filePath)) {
-//       const data = fs.readFileSync(filePath, "utf-8");
-//       logins = JSON.parse(data || "[]");
-//     }
+    const filePath = path.join(process.cwd(), "patient-logins.json");
 
-//     logins.push({
-//       ...body,
-//       timestamp: new Date().toISOString(),
-//     });
+    let logins: PatientLogin[] = [];
+    if (fs.existsSync(filePath)) {
+      const data = fs.readFileSync(filePath, "utf-8");
+      logins = JSON.parse(data || "[]") as PatientLogin[];
+    }
 
-//     fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
+    logins.push({
+      ...body,
+      timestamp: new Date().toISOString(),
+    });
 
-//     return NextResponse.json({ success: true });
-//   } catch (err) {
-//     console.error("Error logging patient login:", err);
-//     return NextResponse.json({ success: false }, { status: 500 });
-//   }
-// }
+    fs.writeFileSync(filePath, JSON.stringify(logins, null, 2));
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Error logging patient login:", err);
+    return NextResponse.json({ success: false }, { status: 500 });
+  }
+}
