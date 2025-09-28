@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Eye, EyeOff, Mountain, User, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 interface LoginComponentProps {
     onSwitchToSignup: () => void
@@ -13,18 +14,31 @@ export default function LoginComponent({ onSwitchToSignup }: LoginComponentProps
     const [password, setPassword] = useState('')
     const [rememberMe, setRememberMe] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
+    const router = useRouter();
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log('User login attempt:', { email, password, rememberMe })
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-        try {
-            console.log('Processing user authentication...')
-            // Handle login logic here
-        } catch (error) {
-            console.error('User login failed:', error)
-        }
+    const loginData = { email, password, rememberMe };
+
+    try {
+      const res = await fetch("/api/patient-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginData),
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        console.log("Patient login attempt logged!");
+        router.push("/patient/dashboard"); // Redirect after login
+      } else {
+        console.error("Failed to log patient login attempt");
+      }
+    } catch (error) {
+      console.error("Error logging patient login attempt:", error);
     }
+  };
 
     return (
         <div className="h-full flex flex-col justify-center p-12">

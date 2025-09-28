@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-// import LoginComponent from '../../components/patient/LoginComponent'
-// import SignupComponent from '../../components/patient/SignupComponent'
+import LoginComponent from '../../components/patient/LoginComponent'
+import SignupComponent from '../../components/patient/SignupComponent'
 
 export default function LoginPage() {
   const [isSignup, setIsSignup] = useState(false)
