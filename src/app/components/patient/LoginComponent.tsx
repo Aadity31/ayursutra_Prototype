@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Eye, EyeOff, Mountain, User, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface LoginComponentProps {
     onSwitchToSignup: () => void
@@ -131,12 +132,14 @@ export default function LoginComponent({ onSwitchToSignup }: LoginComponentProps
                 </div>
 
                 {/* Login Button */}
+             <Link href="/patient/Dashboard" >
                 <button
                     type="submit"
                     className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                 >
                     Login
                 </button>
+                </Link>
             </form>
 
             {/* Switch to Signup */}
