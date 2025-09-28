@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// Define expected patient login structure
 interface PatientLogin {
   email: string;
   password: string;
@@ -10,9 +9,15 @@ interface PatientLogin {
   timestamp: string;
 }
 
-export async function POST(req: Request) {
+interface PatientLoginRequest {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as Omit<PatientLogin, "timestamp">;
+    const body: PatientLoginRequest = await req.json();
 
     const filePath = path.join(process.cwd(), "patient-logins.json");
 

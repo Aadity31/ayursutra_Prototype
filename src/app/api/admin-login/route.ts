@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
@@ -9,9 +9,15 @@ interface LoginEntry {
   timestamp: string;
 }
 
-export async function POST(req: Request) {
+interface LoginRequest {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body: LoginRequest = await req.json();
 
     const filePath = path.join(process.cwd(), "admin-logins.json");
 
