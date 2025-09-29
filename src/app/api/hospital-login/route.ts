@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { NextRequest, NextResponse } from "next/server";
+import redis from "../../lib/redisClient"; // adjust path if needed
 
 interface LoginEntry {
   email: string;
@@ -8,7 +8,7 @@ interface LoginEntry {
   timestamp: string;
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
@@ -19,17 +19,19 @@ export async function POST(req: Request) {
       timestamp: new Date().toISOString(),
     };
 
-    // Fetch existing logins (if any)
-    const existingLogins = (await kv.get("admin-logins")) as LoginEntry[] | null;
+    // Fetch existing logins
+    const existingRaw = await redis.get("hospital-logins");
+    const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw as string) : [];
 
-    const updatedLogins = existingLogins ? [...existingLogins, loginEntry] : [loginEntry];
+    // Append new login
+    const updatedLogins = [...existingLogins, loginEntry];
 
-    // Store updated logins in KV
-    await kv.set("admin-logins", updatedLogins);
+    // Store updated logins in Redis
+    await redis.set("hospital-logins", JSON.stringify(updatedLogins));
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error writing admin login:", error);
+    console.error("Error writing hospital login:", error);
     return NextResponse.json({ success: false }, { status: 500 });
   }
 }
