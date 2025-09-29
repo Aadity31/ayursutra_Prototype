@@ -1,4 +1,3 @@
-// src/components/hospital/ReportsTable.tsx
 
 import React from "react";
 import { reportsData } from "../hospital/reportsData";

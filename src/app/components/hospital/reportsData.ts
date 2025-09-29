@@ -1,4 +1,3 @@
-// src/hospital/reportsData.ts
 
 import { FiActivity, FiDatabase, FiHeart } from "react-icons/fi";
 import { IconType } from "react-icons";

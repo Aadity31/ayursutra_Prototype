@@ -14,21 +14,21 @@ export const feedbackData: Feedback[] = [
     date: "22 DEC 7:20 PM",
     completion: 50,
     icon: FiCalendar,
-    color: "#0EA5E9", // blue
+    color: "#0EA5E9", 
   },
   {
     hospital: "Doon Hospital",
     date: "21 DEC 11:21 PM",
     completion: 10,
     icon: FiUsers,
-    color: "#F43F5E", // red
+    color: "#F43F5E", 
   },
   {
     hospital: "Doon Hospital",
     date: "21 DEC 9:26 PM",
     completion: 100,
     icon: FiActivity,
-    color: "#10B981", // green
+    color: "#10B981",
   },
   {
     hospital: "Doon Hospital",
@@ -42,13 +42,13 @@ export const feedbackData: Feedback[] = [
     date: "19 DEC 10:53 PM",
     completion: 25,
     icon: FiStar,
-    color: "#FACC15", // yellow
+    color: "#FACC15", 
   },
   {
     hospital: "Doon Hospital",
     date: "18 DEC 6:41 PM",
     completion: 60,
     icon: FiCheck,
-    color: "#8B5CF6", // purple
+    color: "#8B5CF6", 
   },
 ];
