@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Eye, EyeOff, Mountain, User, UserCheck } from 'lucide-react'
+import { Eye, EyeOff, User, UserCheck } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 

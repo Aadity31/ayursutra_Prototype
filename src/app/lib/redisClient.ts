@@ -1,15 +1,15 @@
-import { RedisClientType } from 'redis';
+// src/app/lib/redisClient.ts
+import { createClient, RedisClientType } from 'redis';
 import VercelKV from '@vercel/kv';
-import { createClient as createRedisClient } from 'redis';
 
 let redis: RedisClientType | typeof VercelKV;
 
 if (process.env.VERCEL) {
-  // On Vercel serverless: use the default KV export
-  redis = VercelKV; // just the default export
+  // On Vercel: use Vercel KV directly
+  redis = VercelKV;
 } else {
-  // Local development with Upstash Redis
-  redis = createRedisClient({
+  // Local dev: Upstash Redis
+  redis = createClient({
     url: process.env.UPSTASH_REDIS_REST_URL,
     password: process.env.UPSTASH_REDIS_REST_TOKEN,
   });
