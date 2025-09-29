@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import redis from "../../lib/redisClient"; 
+import redis from "../../lib/redisClient";
 
 interface LoginEntry {
   email: string;
@@ -19,14 +19,14 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    // Fetch existing logins
+    // Fetch existing logins from Redis
     const existingRaw = await redis.get("hospital-logins");
-    const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw as string) : [];
+    const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw) : [];
 
     // Append new login
     const updatedLogins = [...existingLogins, loginEntry];
 
-    // Store updated logins in Redis
+    // Store updated logins back in Redis
     await redis.set("hospital-logins", JSON.stringify(updatedLogins));
 
     return NextResponse.json({ success: true });
