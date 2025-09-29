@@ -1,17 +1,18 @@
 // src/app/lib/redisClient.ts
-import { createClient } from 'redis';
+import { createClient, RedisClientType } from 'redis';
 
 declare global {
-  // Extend global type to include our redis client
+  // Extend global type to include our Redis client
+  // Avoid `any`
   // eslint-disable-next-line no-var
-  var redis: any;
+  var redis: RedisClientType | undefined;
 }
 
 // Reuse existing client if available, otherwise create new
-const redis =
+const redis: RedisClientType =
   global.redis ??
   (() => {
-    const client = createClient({ url: process.env.REDIS_URL });
+    const client: RedisClientType = createClient({ url: process.env.REDIS_URL });
     client.connect().catch(console.error);
     global.redis = client;
     return client;
