@@ -72,7 +72,7 @@ export default function LoginComponent({ onSwitchToSignup }: LoginComponentProps
                         type="email"
                         autoComplete="email"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+                        className="w-full px-4 py-3 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
                         placeholder="Enter your email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -91,7 +91,7 @@ export default function LoginComponent({ onSwitchToSignup }: LoginComponentProps
                             type={showPassword ? 'text' : 'password'}
                             autoComplete="current-password"
                             required
-                            className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+                            className="w-full px-4 py-3 pr-12 text-gray-600 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
                             placeholder="Enter your password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
