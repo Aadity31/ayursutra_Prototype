@@ -36,44 +36,26 @@ const SmallStatsCard: React.FC = () => {
 
 const Dashboard: React.FC = () => {
   const headerCards: KPI[] = [
-    {
-      title: "Today's Appointments",
-      value: 25,
-      change: "+5%",
-      icon: <FiCalendar />,
-      status: "up",
-    },
-    {
-      title: "Today's Sessions",
-      value: 10,
-      change: "-2%",
-      icon: <FiCheck />,
-      status: "down",
-    },
-    {
-      title: "New Clients",
-      value: 8,
-      change: "+10%",
-      icon: <FiUser />,
-      status: "up",
-    },
-    {
-      title: "Total Clients",
-      value: 250,
-      change: "+1%",
-      icon: <FiUsers />,
-      status: "up",
-    },
+    { title: "Today's Appointments", value: 25, change: "+5%", icon: <FiCalendar />, status: "up" },
+    { title: "Today's Sessions", value: 10, change: "-2%", icon: <FiCheck />, status: "down" },
+    { title: "New Clients", value: 8, change: "+10%", icon: <FiUser />, status: "up" },
+    { title: "Total Clients", value: 250, change: "+1%", icon: <FiUsers />, status: "up" },
   ];
 
-  const chart = {
-    title: "Hospital Overview",
-  };
+  const chart = { title: "Hospital Overview" };
 
   return (
-    <div className="space-y-8">
+    <div
+      className="space-y-8 min-h-screen bg-cover bg-center p-6"
+      style={{
+        background: `linear-gradient(
+          to bottom right,
+          #F5F5DC 0%,
+          #E9E4D4 100%
+        )`,
+      }}
+    >
       <HeaderCards cards={headerCards} />
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="w-full">
           <AddHospitalsCard
@@ -82,7 +64,6 @@ const Dashboard: React.FC = () => {
             image="https://i.pinimg.com/736x/28/2d/88/282d8807bbf1b5d58d452a4a9fb2de83.jpg"
           />
         </div>
-
         <div className="w-full flex justify-center">
           <BannerCard
             image="/TOP 5 BENEFITS OF A SUBSCRIPTION MODEL & HOW TO UTILIZE.jpeg"
@@ -90,17 +71,14 @@ const Dashboard: React.FC = () => {
             description="Get more features by upgrading your subscription."
           />
         </div>
-
         <div className="w-full flex justify-center">
           <SmallStatsCard />
         </div>
       </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ActiveUsers />
         <HospitalOverviewChart chart={chart} />
       </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ReportsTable />
         <FeedbackSection />

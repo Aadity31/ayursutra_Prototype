@@ -12,7 +12,6 @@ import {
 } from "recharts";
 
 const ActiveUsers: React.FC = () => {
-  // Data inside the component - no need to pass from outside
   const monthlyUsers = [
     { month: "Jan", users: 200 },
     { month: "Feb", users: 300 },
