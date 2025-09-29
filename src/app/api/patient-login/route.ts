@@ -23,10 +23,11 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    // Fetch existing logins from KV
-    const existingLogins = (await kv.get("patient-logins")) as PatientLogin[] | null;
+    // Fetch existing logins from KV, default to empty array
+    const existingLogins = (await kv.get<PatientLogin[]>("patient-logins")) ?? [];
 
-    const updatedLogins = existingLogins ? [...existingLogins, newEntry] : [newEntry];
+    // Append new login
+    const updatedLogins = [...existingLogins, newEntry];
 
     // Save updated logins back to KV
     await kv.set("patient-logins", updatedLogins);
