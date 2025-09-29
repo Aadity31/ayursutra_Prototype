@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import redis from "../../lib/redisClient"; // adjust path if needed
+import redis from "../../lib/redisClient"; 
 
 interface LoginEntry {
   email: string;

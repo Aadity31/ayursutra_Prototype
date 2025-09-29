@@ -1,19 +1,20 @@
 // src/app/lib/redisClient.ts
-import { createClient, RedisClientType } from 'redis';
-import VercelKV from '@vercel/kv';
+import { createClient } from 'redis';
 
-let redis: RedisClientType | typeof VercelKV;
-
-if (process.env.VERCEL) {
-  // On Vercel: use Vercel KV directly
-  redis = VercelKV;
-} else {
-  // Local dev: Upstash Redis
-  redis = createClient({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    password: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
-  redis.connect().catch(console.error);
+declare global {
+  // Extend global type to include our redis client
+  // eslint-disable-next-line no-var
+  var redis: any;
 }
+
+// Reuse existing client if available, otherwise create new
+const redis =
+  global.redis ??
+  (() => {
+    const client = createClient({ url: process.env.REDIS_URL });
+    client.connect().catch(console.error);
+    global.redis = client;
+    return client;
+  })();
 
 export default redis;
