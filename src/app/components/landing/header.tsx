@@ -106,9 +106,9 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             <button
               onClick={() => navigateToSection('demo')}
-              className="bg-gradient-to-r from-green-600 to-orange-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-medium transform hover:scale-105 duration-200"
+              className="bg-gradient-to-r from-green-600 to-orange-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-bold transform hover:scale-105 duration-200"
             >
-              View Demo
+              Login
             </button>
           </div>
 

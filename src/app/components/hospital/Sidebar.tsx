@@ -12,17 +12,19 @@ const Sidebar: React.FC = () => {
       style={{ backgroundColor: "#FFFCF0" }}
     >
       <div className="px-6 py-6">
-        <div className="flex items-center gap-3 mb-10">
-          <Image
-            src="/logo-no-name.svg"
-            alt="AyurSutra Logo"
-            width={40}
-            height={40}
-          />
-          <span className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-green-600 bg-clip-text text-transparent">
-            AyurSutra
-          </span>
-        </div>
+        <Link href='/hospital/dashboard'>
+          <div className="flex items-center gap-3 mb-10 cursor-pointer">
+            <Image
+              src="/logo-no-name.svg"
+              alt="AyurSutra Logo"
+              width={40}
+              height={40}
+            />
+            <span className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-green-600 bg-clip-text text-transparent">
+              AyurSutra
+            </span>
+          </div>
+        </Link>
 
         <div className="text-xs uppercase text-gray-500 font-semibold mb-3">
           Main Menu
@@ -59,11 +61,26 @@ const Sidebar: React.FC = () => {
           <div className="flex items-center gap-3">
             <FiHelpCircle /> Need Help?
           </div>
-          <div className="flex items-center gap-2 text-sm text-blue-700 hover:underline cursor-pointer">
-            <FiMail />
-            <span>Contact Us</span>
+          <div className="flex items-center gap-2 text-sm text-blue-700 ">
+            <a
+              href="mailto:shwetanshubhatt@gmail.com"
+              className="flex items-center gap-2 text-sm text-blue-700 hover:underline cursor-pointer"
+            >
+              <FiMail />
+              <span>Contact Us</span>
+            </a>
           </div>
-        </div>
+        <Link href='/'>
+          <button
+            className="px-5 py-2 rounded-lg bg-red-400 text-white font-semibold 
+                      hover:bg-red-600 active:bg-red-600 transition-colors duration-400 
+                      shadow-md hover:shadow-lg focus:outline-none focus:ring-2 
+                      focus:ring-red-400 focus:ring-offset-1 cursor-pointer"
+          >
+            Log Out
+          </button>
+        </Link>
+      </div>
       </div>
     </aside>
   );

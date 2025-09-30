@@ -45,9 +45,13 @@ export default function Hero() {
               <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition-all">
                 Explore Demo
               </button>
-              <button className="border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-50 transition-colors">
+              <a
+                href="/files/Ayursutra.pptx" 
+                download
+                className="inline-block border-2 border-orange-500 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-50 transition-colors"
+              >
                 View Presentation
-              </button>
+              </a>
             </div>
           </div>
 

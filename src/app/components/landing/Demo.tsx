@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link"
 export default function Demo() {
   return (
@@ -14,6 +15,21 @@ export default function Demo() {
             Experience our AI-powered Panchakarma management system through interactive demos 
             showcasing real-world scenarios and intelligent features.
           </p>
+          <p
+              className="text-lg max-w-3xl mx-auto mt-4 px-4 py-2 rounded-md text-white font-bold"
+              style={{
+                animation: "blinkBg 1s infinite",
+              }}
+            >
+              Note: You can login with any credentials.
+            </p>
+
+            <style jsx>{`
+              @keyframes blinkBg {
+                0%, 100% { background-color: #ca8a04; } /* yellow-600 */
+                50% { background-color: #854d0e; }      /* yellow-800 */
+              }
+            `}</style>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
