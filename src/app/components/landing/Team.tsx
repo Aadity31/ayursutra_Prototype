@@ -12,12 +12,12 @@ export default function Team() {
       role: "Team Leader & Full Stack Developer",
       branch: "Computer Science Engineering",
       year: "3rd Year",
-      skills: ["React", "Node.js", "AI/ML", "System Design"],
+      skills: ["API & Integration", "Node.js", "AI/ML", "System Design"],
       bio: "Passionate about healthcare technology and AI integration. Lead developer with 3+ years of web development experience.",
       linkedin: "https://www.linkedin.com/in/shwetanshu-bhatt-082167257/",
       github: "https://github.com/Shwetanshu-Bhatt",
       image: "/team/Shwetanshu.jpeg",
-      expertise: "Frontend & Backend Development",
+      expertise: "Backend Development & Integration",
       color: "blue"
     },
     {
@@ -155,7 +155,7 @@ export default function Team() {
         </div>
 
         {/* Team Statistics */}
-        <div className="grid md:grid-cols-4 gap-8 mb-16">
+        {/* <div className="grid md:grid-cols-4 gap-8 mb-16">
           <div className="text-center">
             <div className="text-3xl font-bold text-blue-600 mb-2">6</div>
             <div className="text-gray-700">Team Members</div>
@@ -172,7 +172,7 @@ export default function Team() {
             <div className="text-3xl font-bold text-orange-600 mb-2">2</div>
             <div className="text-gray-700">Industry Mentors</div>
           </div>
-        </div>
+        </div> */}
 
         {/* Team Members */}
         <div className="mb-20">
@@ -324,8 +324,9 @@ export default function Team() {
           </div>
         </div>
 
-        {/* Rest of your mentors and other sections remain the same... */}
+        {/* Rest of your mentors and other sections remain the same...
         {/* Mentors Section */}
+        {/*
         <div className="bg-white rounded-2xl p-8 shadow-lg">
           <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">Our Mentors</h3>
           <div className="grid md:grid-cols-2 gap-8">
@@ -356,7 +357,7 @@ export default function Team() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Team Values */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
@@ -398,12 +399,21 @@ export default function Team() {
             Interested in our project or want to collaborate? We'd love to hear from you!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <a
+              href="mailto:teamlead@example.com"
+              className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+            >
               📧 Contact Team Lead
-            </button>
-            <button className="border-2 border-orange-500 text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all duration-300 hover:scale-105">
+            </a>
+            <a
+              href="https://github.com/Aadity31/ayursutra_Prototype"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+            >
               📋 View Project Repository
-            </button>
+            </a>
+
           </div>
         </div>
       </div>
