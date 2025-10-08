@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 export default function AdminLoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
