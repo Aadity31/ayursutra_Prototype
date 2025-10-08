@@ -13,22 +13,29 @@ export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const loginData = { email, password, rememberMe };
+    const loginData = { email, password, rememberMe };
 
-  try {
-    const res = await fetch("/api/admin-login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(loginData),
-    });
+    try {
+      const res = await fetch("/api/admin-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginData),
+      });
 
-    const result = await res.json();
-    console.log("Login saved:", result);
-  } catch (error) {
-    console.error("Error saving login:", error);
-  }
+      const result = await res.json();
+      console.log("Login saved:", result);
+
+      if (res.ok && result.success) {
+        router.push("/admin/dashboard");
+      } else {
+        alert(result.message || "Login failed!");
+      }
+    } catch (error) {
+      console.error("Error saving login:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
 
