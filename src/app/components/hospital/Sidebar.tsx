@@ -14,15 +14,23 @@ const Sidebar: React.FC = () => {
       <div className="px-6 py-6">
         <Link href='/hospital/dashboard'>
           <div className="flex items-center gap-3 mb-10 cursor-pointer">
-            <Image
-              src="/logo-no-name.svg"
-              alt="AyurSutra Logo"
-              width={40}
-              height={40}
-            />
-            <span className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-green-600 bg-clip-text text-transparent">
-              AyurSutra
-            </span>
+            <div className="flex justify-center items-center space-x-3">
+                           <div className="relative w-12 h-12 transform hover:scale-105 transition-transform duration-200">
+                               <Image
+                                   src="/logo-no-name.svg"
+                                   alt="AyurSutra Logo"
+                                   width={48}
+                                   height={48}
+                                   className="rounded-lg object-contain"
+                                   priority
+                               />
+                           </div>
+                           <div>
+                               <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-orange-600  bg-clip-text text-transparent">
+                                   AyurSutra
+                               </span>
+                           </div>
+                       </div>
           </div>
         </Link>
 

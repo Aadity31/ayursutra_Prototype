@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -137,12 +138,13 @@ export default function AdminLoginPage() {
           </div>
 
           {/* Login Button */}
+          <Link href="/admin/dashboard" >
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Sign in as Administrator
-          </button>
+          </button></Link>
         </form>
 
         {/* Footer */}
